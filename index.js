@@ -6,6 +6,8 @@ console.log(`Hey there ${name}`);
 
 //var process = require('process');
 var readline = require('readline');
+
+
  function randomNumber(min, max) {  
   return Math.floor(
     Math.random() * (max - min + 1) + min
@@ -41,7 +43,7 @@ terminal.on('line', function(answer) {
   }
 
   else if (answerNum === randomNumber(1,2)) {
-    console.log('W I N N E R ! ! !');
+    console.log('You got 5 points!! Procede to the next level');
     console.log('You lost only ' + (6 - lives) + ' lives');
     process.exit(0);
   }

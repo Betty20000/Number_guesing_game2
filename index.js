@@ -1,68 +1,29 @@
-const prompt = require('prompt-sync')();
+// prompt user for their username
+const userName = prompt(`What is your name?`)
 
-const name = prompt('What is your name?');
-console.log(`Hey there ${name}`);
+// welcome user
+alert(`Welcome ${userName}`);
 
+// variables
+let points = 0;
+let level = 1;
+let max = 2;
 
-//var process = require('process');
-var readline = require('readline');
+// game loop
+for (let i = 2; i <= 10; i++) {
+    // Generating Random Number
+    let correctNumber = Math.floor(Math.random() * max) + 1;
+    // Guessed Number
+    let guess = parseInt(prompt(`Enter a number between 1 and ${max}`, ``));
 
-
- function randomNumber(min, max) {  
-  return Math.floor(
-    Math.random() * (max - min + 1) + min
-  )
+    if (guess === correctNumber) {
+        alert(`Amazing! ${guess} is the correct number!!`)
+        max++;
+        points++;
+    } 
+    else if (guess !== correctNumber) {
+        alert("Wrong Answer! Try Again")
+    }
 }
-console.log(  
-  randomNumber(1, 2)
- )
 
-
-
-var lives = 5;
-
-var terminal = readline.createInterface(
-  {
-    input: process.stdin,
-    output: process.stdout
-  });
-
-terminal.setPrompt('Guess the number! (1-2): ');
-terminal.prompt();
-terminal.on('line', function(answer) {
-  var answerNum = parseInt(answer);
-
-  if (answerNum > randomNumber(1,2)) {
-    console.log('Too high!');
-    console.log('You have ' + lives + ' lives left');
-  }
-
-  else if (answerNum < randomNumber(1,2)) {
-    console.log('Too low!');
-    console.log('You have ' + lives + ' lives left');
-  }
-
-  else if (answerNum === randomNumber(1,2)) {
-    console.log('You got 5 points!! Procede to the next level');
-    console.log('You lost only ' + (6 - lives) + ' lives');
-    process.exit(0);
-  }
-
-  else {
-    console.log("That wasn't a number I recognise");
-    console.log('You have ' + lives + ' lives');
-  }
-
-  lives--;
-  if (lives == 0) {
-    console.log('G A M E  O V E R ! ! !');
-    process.exit(0);
-  }
-
-  terminal.prompt();
-});
-
-terminal.on('close', function() {
-  console.log('C H I C K E N :P')
-  process.exit(1);
-});
+alert(`The game has ended and you had ${points} points`); 
